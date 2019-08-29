@@ -1,36 +1,30 @@
-public enum Operator {
+import java.util.function.BiFunction;
 
-    ADD("+") {
-        @Override
-        public int operation(int a, int b) {
-            return a + b;
-        }
-    }, MINUS("-") {
-        @Override
-        public int operation(int a, int b) {
-            return a - b;
-        }
-    }, MULTI("*") {
-        @Override
-        public int operation(int a, int b) {
-            return a * b;
-        }
-    }, DIV("/") {
-        @Override
-        public int operation(int a, int b) {
-            return a / b;
-        }
-    };
+public enum Operator implements BiFunction<Integer, Integer, Integer> {
 
-    private String opr;
+    ADD("+", (a, b) -> a + b),
+    MINUS("-", (a, b) -> a - b),
+    MULTI("*", (a, b) -> a * b),
+    DIV("/", (a, b) -> a / b);
 
-    Operator(String opr) {
-        this.opr = opr;
+    private String operationSymbol;
+    private BiFunction<Integer, Integer, Integer> operation;
+
+    public String getOperationSymbol() {
+        return operationSymbol;
     }
 
-    public String getOpr() {
-        return opr;
+    Operator(String operationSymbol, BiFunction<Integer, Integer, Integer> operation) {
+        this.operationSymbol = operationSymbol;
+        this.operation = operation;
     }
 
-    public abstract int operation(int a, int b);
+    @Override
+    public Integer apply(Integer integer, Integer integer2) {
+        return null;
+    }
+
+    public BiFunction<Integer, Integer, Integer> getOperation() {
+        return operation;
+    }
 }

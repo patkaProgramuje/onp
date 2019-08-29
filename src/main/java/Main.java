@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.function.BiFunction;
 
 public class Main {
 
@@ -28,7 +29,7 @@ public class Main {
                 Dictionary dictionary = new Dictionary();
                 Integer a = stack.pop();
                 Integer b = stack.pop();
-                int result = dictionary.getOperation(c).operation(b, a);
+                int result = dictionary.getOperation(c).apply(b, a);
                 stack.push(result);
             }
         }
@@ -37,15 +38,15 @@ public class Main {
 
     static class Dictionary {
 
-        Map<String, Operator> hashmap = new HashMap<>();
+        Map<String, BiFunction<Integer, Integer, Integer>> hashmap = new HashMap<>();
 
         public Dictionary() {
             for (Operator operator : Operator.values()) {
-                hashmap.put(operator.getOpr(), operator);
+                hashmap.put(operator.getOperationSymbol(), operator.getOperation());
             }
         }
 
-        public Operator getOperation(String operator) {
+        public BiFunction<Integer, Integer, Integer> getOperation(String operator) {
             return hashmap.get(operator);
         }
     }
