@@ -1,6 +1,6 @@
 import java.util.function.BiFunction;
 
-public enum Operator implements BiFunction<Integer, Integer, Integer> {
+public enum Operator{
 
     ADD("+", (a, b) -> a + b),
     MINUS("-", (a, b) -> a - b),
@@ -17,11 +17,6 @@ public enum Operator implements BiFunction<Integer, Integer, Integer> {
     Operator(String operationSymbol, BiFunction<Integer, Integer, Integer> operation) {
         this.operationSymbol = operationSymbol;
         this.operation = operation;
-    }
-
-    @Override
-    public Integer apply(Integer integer, Integer integer2) {
-        return null;
     }
 
     public BiFunction<Integer, Integer, Integer> getOperation() {

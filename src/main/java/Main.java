@@ -47,6 +47,9 @@ public class Main {
         }
 
         public BiFunction<Integer, Integer, Integer> getOperation(String operator) {
+            if(hashmap.get(operator) == null) {
+                throw new IllegalArgumentException(String.format("There is unknown operator: %s in expression.", operator));
+            }
             return hashmap.get(operator);
         }
     }
